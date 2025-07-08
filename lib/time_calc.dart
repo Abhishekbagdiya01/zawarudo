@@ -45,7 +45,13 @@ Future<DateTime> getBootTimeMac() async {
 }
 
 /// Calculate worked hours today given boot time & now
+/// Weekends (Saturday and Sunday) are not counted as working days.
 double calculateWorkedHours(DateTime bootTime, DateTime now) {
+  // Check if it's a weekend (Saturday or Sunday)
+  if (now.weekday == DateTime.saturday || now.weekday == DateTime.sunday) {
+    return 0.0;
+  }
+
   final workedDuration = now.difference(bootTime);
   return double.parse((workedDuration.inMinutes / 60).toStringAsFixed(2));
 }

@@ -19,6 +19,7 @@ Perfect for devs who want lightweight time tracking right in their terminal, wit
 ## 🚀 **Features**
 
 ✅ **Work Hours Tracker** — Log login/logout times, track worked hours, and calculate daily & monthly shortfall against a target shift (default: 9h).  
+✅ **Automatic Weekend Handling** — Ignores Saturdays & Sundays in shortfall calculations, so you can chill on weekends guilt-free.
 ✅ **Colorful Summaries** — Terminal output with color-coded stats for easy reading.  
 ✅ **ASCII Art Fun** — Adds a bit of style with nerdy ASCII art prints.  
 ✅ **Cross-platform** — Works on Linux & macOS.  
@@ -35,16 +36,7 @@ Then clone this repository:
 git clone https://github.com/Abhishekbagdiya01/zawarudo.git
 cd zawarudo
 
-
-## Installation
-
 To install Zawarudo, ensure you have the Dart SDK installed. Then, you can clone this repository:
-
-```bash
-git clone https://github.com/your-username/zawarudo.git
-cd zawarudo
-```
-
 ## Usage
 
 To run the Zawarudo application, navigate to the project root and execute:
@@ -54,6 +46,22 @@ dart bin/zawarudo.dart
 ```
 
 Further usage instructions will depend on the specific commands and arguments supported by the application.
+
+## Shell Integration (Zsh)
+
+To automatically log your terminal start and exit times, you can bind the `zawarudo.dart` script to your Zsh shell. Add the following lines to your `~/.zshrc` file:
+
+```bash
+# Zawarudo: Log time on terminal start and exit
+if [[ -o INTERACTIVE ]]; then
+    dart run zawarudo/bin/zawarudo.dart
+    zshexit() {
+        dart run zawarudo/bin/zawarudo.dart
+    }
+fi
+```
+
+Remember to replace `zawarudo/` with the actual path to your `zawarudo` directory if it's different.
 
 ## Project Structure
 
